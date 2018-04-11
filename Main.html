@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		a{
+			font-family: cursive;
+		}
+		button{
+			font-family: cursive;
+			text-emphasis-color: red;
+		}
+		h1{
+			 font-family: cursive;
+			text-align: center;
+		}
+		p{
+			font-family: cursive;
+			text-align: center;
+		}
+		li{
+			font-family: cursive;
+		   padding-left: 30%;
+		}
+		#Note{
+		  color: red;
+			text-decoration: underline;
+			text-decoration-color: red;
+			text-align: center;
+		}
+	</style>
+<body>
+
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large"
+  onclick="w3_close()">Close &times;</button>
+  <a href="Cube_with_GUI.html" class="w3-bar-item w3-button">Cube With GUI</a>
+  <a href="Sphere_with_GUI.html" class="w3-bar-item w3-button">Sphere With GUI</a>
+  <a href="Cylinder_withGUI.html" class="w3-bar-item w3-button">Cylinder With GUI</a>
+	<a href="Cone_withGUI.html" class="w3-bar-item w3-button">Cone With GUI</a>
+	<a href="Animation-1.html" class="w3-bar-item w3-button">Plane Geometry And Animation</a>
+	<a href="texturecube.html" class="w3-bar-item w3-button">Texture Mapped  Cube</a>
+	<a href="Texture.html" class="w3-bar-item w3-button">Texture Mapped  Sphere</a>
+	<a href="Bump.html" class="w3-bar-item w3-button">Texture and Bump Mapped  Sphere</a>
+</div>
+
+<div id="main">
+
+<div class="w3-teal">
+  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="w3-container">
+    <h1>Project Submission - 3</h1>
+  </div>
+</div>
+
+<div class="w3-container">
+
+</div>
+<p>Details of This Submission.</p>
+	
+     	<li>     Usage Of Dat.GUI	</li>
+		<li>   Have Applied Texture to a Sphere</li>
+		<li>   Have Applied Texture to a Cube</li>
+		<li>   Have Applied A bump Map and Texture to a Sphere</li>
+		<li>   Have Created Primitives Using Dat GUI</li>
+		<li>   Have Created a basic Animation using Dat GUI for Rotation and Speed.</li>
+	
+	
+	<p>
+	Next Submission I intend to implement a the Textures and Bump Maps of the Solar System that is Submitted in the prvious Assignment 
+	</p>
+	<p id="Note"> 
+	NOTE:  Please use the Sandwich Symbol on the top to access the Links to to the Submission 
+	</p>
+</div>
+
+<script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "25%";
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+
+</body>
+</html>
+
+
+

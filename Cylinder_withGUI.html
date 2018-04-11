@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<title>Cylinder GUI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		a{
+			font-family: cursive;
+		}
+		button{
+			font-family: cursive;
+			text-emphasis-color: red;
+		}
+		h1{
+			 font-family: cursive;
+			text-align: center;
+		}
+		p{
+			font-family: cursive;
+			text-align: center;
+		}
+		li{
+			font-family: cursive;
+		   padding-left: 30%;
+		}
+		#Note{
+		  color: red;
+			text-decoration: underline;
+			text-decoration-color: red;
+			text-align: center;
+		}
+	</style>
+<body onload="drawCylinder();">
+
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large"
+  onclick="w3_close()">Close &times;</button>
+  <a href="Main.html" class="w3-bar-item w3-button">Main Page</a>
+<a href="Cube_with_GUI.html" class="w3-bar-item w3-button">Cube With GUI</a>
+  <a href="Sphere_with_GUI.html" class="w3-bar-item w3-button">Sphere With GUI</a>
+	<a href="Cone_withGUI.html" class="w3-bar-item w3-button">Cone With GUI</a>
+	<a href="Animation-1.html" class="w3-bar-item w3-button">Plane Geometry And Animation</a>
+	<a href="texturecube.html" class="w3-bar-item w3-button">Texture Mapped  Cube</a>
+	<a href="Texture.html" class="w3-bar-item w3-button">Texture Mapped  Sphere</a>
+	<a href="Bump.html" class="w3-bar-item w3-button">Texture and Bump Mapped  Sphere</a>
+</div>
+
+<div id="main">
+
+<div class="w3-teal">
+  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="w3-container">
+    <h1>Project Submission - 3</h1>
+  </div>
+</div>
+
+<div class="w3-container">
+
+</div>
+
+	
+</div>
+<script src="http://threejs.org/build/three.min.js"></script>
+<script src="TrackballControls.js"></script>
+<script src="OrbitControls.js"></script>
+	<script src="dat.gui.js"></script>
+<script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "25%";
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+	<script>
+	function drawCylinder(){
+   var camera, scene, renderer;
+var geometry, material, mesh;
+
+init();
+animate();
+
+
+function addDatGui(){
+ options = {
+  velx: 0.01,
+  vely: 0,
+  camera: {
+    speed: 0.0001
+  }
+};
+
+var gui = new dat.GUI();
+	
+
+var cam = gui.addFolder('Camera');
+cam.add(camera.position, 'x', -1000, 1000).listen();
+cam.add(camera.position, 'y', -1000, 1000).listen();
+cam.add(camera.position, 'z', -1000, 1000).listen();
+cam.open();
+
+var box = gui.addFolder('Cylinder');
+box.add(Cylinder.scale, 'x', 0, 100).name('Width').listen();
+box.add(Cylinder.scale, 'y', 0, 100).name('Height').listen();
+box.add(Cylinder.scale, 'z', 0, 100).name('Length').listen();
+box.add(Cylinder.material, 'wireframe').listen();
+box.open();
+
+var speed= gui.addFolder('Speed');
+model= speed.add(Cylinder.rotation,'x',0,0.2).name('X-Axis').listen();
+	speed.open();
+	
+	model.onChange(animate);
+}
+function init() {
+
+    camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 10000 );
+    camera.position.z = 1000;
+
+    scene = new THREE.Scene();
+
+    geometry = new THREE.CylinderGeometry( 200, 200, 200 );
+    material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+    Cylinder = new THREE.Mesh( geometry, material );
+    scene.add( Cylinder );
+
+    renderer = new THREE.WebGLRenderer({});
+    renderer.setSize( window.innerWidth, window.innerHeight );
+
+    document.body.appendChild( renderer.domElement );
+    
+    addDatGui();
+
+}
+
+function animate() {
+
+    
+    requestAnimationFrame( animate );
+
+   Cylinder.rotation.x = options.velx;
+    Cylinder.rotation.y = options.velx;
+
+    renderer.render( scene, camera );
+
+}
+
+}
+	</script>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<title>Texture</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<style>
+		a{
+			font-family: cursive;
+		}
+		button{
+			font-family: cursive;
+			text-emphasis-color: red;
+		}
+		h1{
+			 font-family: cursive;
+			text-align: center;
+		}
+		p{
+			font-family: cursive;
+			text-align: center;
+		}
+		li{
+			font-family: cursive;
+		   padding-left: 30%;
+		}
+		#Note{
+		  color: red;
+			text-decoration: underline;
+			text-decoration-color: red;
+			text-align: center;
+		}
+	</style>
+<body onload="Texture();">
+
+<div class="w3-sidebar w3-bar-block w3-card w3-animate-left" style="display:none" id="mySidebar">
+  <button class="w3-bar-item w3-button w3-large"
+  onclick="w3_close()">Close &times;</button>
+  <a href="Main.html" class="w3-bar-item w3-button">Main Page</a>
+<a href="Cube_with_GUI.html" class="w3-bar-item w3-button">Cube With GUI</a>
+  <a href="Sphere_with_GUI.html" class="w3-bar-item w3-button">Sphere With GUI</a>
+  <a href="Cylinder_withGUI.html" class="w3-bar-item w3-button">Cylinder With GUI</a>
+	<a href="Cone_withGUI.html" class="w3-bar-item w3-button">Cone With GUI</a>
+	<a href="Animation-1.html" class="w3-bar-item w3-button">Plane Geometry And Animation</a>
+	<a href="Texture.html" class="w3-bar-item w3-button">Texture Mapped  Sphere</a>
+	<a href="Bump.html" class="w3-bar-item w3-button">Texture and Bump Mapped  Sphere</a>
+</div>
+
+<div id="main">
+
+<div class="w3-teal">
+  <button id="openNav" class="w3-button w3-teal w3-xlarge" onclick="w3_open()">&#9776;</button>
+  <div class="w3-container">
+    <h1>Project Submission - 3</h1>
+  </div>
+</div>
+
+<div class="w3-container">
+
+</div>
+
+	
+</div>
+<script src="http://threejs.org/build/three.min.js"></script>
+<script src="TrackballControls.js"></script>
+<script src="OrbitControls.js"></script>
+	<script src="dat.gui.js"></script>
+<script>
+function w3_open() {
+  document.getElementById("main").style.marginLeft = "25%";
+  document.getElementById("mySidebar").style.width = "25%";
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("openNav").style.display = 'none';
+}
+function w3_close() {
+  document.getElementById("main").style.marginLeft = "0%";
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("openNav").style.display = "inline-block";
+}
+</script>
+	<script>
+	function Texture(){
+	texture = new THREE.TextureLoader().load( "8k_earth_nightmap.jpg" );
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(95, 1600/600, 1, 10000);
+    var renderer = new THREE.WebGLRenderer({});
+    renderer.setSize(1600,600);
+    document.body.appendChild(renderer.domElement);
+    var geometry = new THREE.CubeGeometry(   30,
+		30,30
+
+);
+    var material = new THREE.MeshPhongMaterial( 
+		{map:texture		} );
+		material.transparent = true;
+
+
+material.depthWrite = false;
+    var Cube = new THREE.Mesh( geometry, material );
+    scene.add( Cube );
+    camera.position.z = 1000;
+	Cube.scale.x = -1;
+	 orbitControl = new THREE.OrbitControls(camera, renderer.domElement);
+        orbitControl.addEventListener('change', render);
+        orbitControl.enableZoom = true;
+	    orbitControl.minDistance = 50;
+	     orbitControl.enableRotate = true;
+	 orbitControl.maxDistance=300;
+	var light = new THREE.AmbientLight('white', 4);
+	light.position.set(15,13,15);
+	scene.add(light);
+
+    function render() {
+		Cube.rotation.x +=0.0001;
+        requestAnimationFrame(render);
+        
+
+
+        renderer.render(scene, camera);
+    }
+    render();
+
+}
+	
+	</script>
+
+</body>
+</html>
+
+
+
